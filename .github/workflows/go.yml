@@ -37,4 +37,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
           push: true
-          tags: alfiantobara/Library-manager:latest
+          tags: alfiantobara/library-manager:latest
