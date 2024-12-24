@@ -1,31 +1,36 @@
 name: Go
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
   build:
-    runs-on: ubuntu-24.04 
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.20'
-    - name: Install dependencies
-      run: go mod tidy
+
     - name: Build
       run: go build -v ./...
+
     - name: Test
       run: go test -v ./...
+
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
     - name: Build and push
-      uses: docker/build-push-action@v6  # Perbaiki indentasi di sini
+      uses: docker/build-push-action@v6
       with:
         push: true
         tags: alfiantobara/library-manager:latest
