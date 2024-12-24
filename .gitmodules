@@ -1,0 +1,3 @@
+[submodule "Library-manager"]
+    path = Library-manager
+    url = https://github.com/AlfiantoBara/Library-manager.git
